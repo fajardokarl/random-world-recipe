@@ -1,25 +1,27 @@
 <template>
-  <div class="home">
-    <div class="card">
-      <div class="card__hero">
-        <img src="@/assets/undraw_cooking_lyxy.svg" alt="">
-      </div>
-      <div class="card__search">
-        <div class="card__title-container">
-          <h2 class="card__title">Be your own <span>CHEF</span></h2>
-          <h3 class="card__subtitle">Find a meal to Cook</h3>
+  <div class="home" id='home'>
+    <div class="card-container">
+      <div class="card">
+        <div class="card__hero">
+          <img src="@/assets/undraw_cooking_lyxy.svg" alt="">
         </div>
-        <div class="card__searchbar-container">
-          <input class="card__searchbar" placeholder="Seach" />
-          <button class="card__search-btn">
-            <img src="@/assets/Icon - Search - Sharp.svg">
-          </button>
-        </div>
-        <div class="card__random_container">
-          <p class="card__random-text">... or get</p>
-          <button class="card__random-btn">
-            Random
-          </button>
+        <div class="card__search">
+          <div class="card__title-container">
+            <h2 class="card__title">Be your own <span>CHEF</span></h2>
+            <h3 class="card__subtitle">Find a meal to Cook</h3>
+          </div>
+          <div class="card__searchbar-container">
+            <input class="card__searchbar" placeholder="Seach" v-model="searchString" />
+            <button class="card__search-btn" @click="handleSearchRecipe">
+              <img src="@/assets/Icon - Search - Sharp.svg">
+            </button>
+          </div>
+          <div class="card__random_container">
+            <p class="card__random-text">... or get</p>
+            <button class="card__random-btn">
+              Random
+            </button>
+          </div>
         </div>
       </div>
     </div>
@@ -28,17 +30,33 @@
 
 <script>
 // @ is an alias to /src
-
+import api from "@/api/Api"
 
 export default {
   name: 'Home',
+  data() {
+    return {
+      searchString: '',
+      recipeResult: [] 
+    }
+  },
   components: {
     // HelloWorld
+  },
+  methods: {
+    // async handleSearchRecipe () {
+    //   await api.searchRecipe(this.searchString)
+    //     .then(response => this.recipeResult = response.data.meals)
+    //   console.log(this.recipeResult)
+    // },
+     handleSearchRecipe () {
+       this.$router.push({name: 'Search', params: { searchString: this.searchString }, query: {by: 'recipe'} })
+    }
   }
 }
 </script>
 
-<style>
+<style> 
 h2, h3 {
   margin-block-end: 0;
   margin-block-start: 0;
@@ -58,7 +76,16 @@ button:focus {
 .home {
   display: flex;
   justify-content: center;
-  /* background: #FEFDF8; */
+  background: #FEFDF8;
+  height: 100%;
+}
+
+.card-container {
+  height: 100vh;
+  vertical-align: middle;
+  display: flex;
+  align-items: center;
+
 }
 
 .card {
@@ -69,12 +96,14 @@ button:focus {
   background: #fff;
   padding: 30px 50px;
   box-shadow: 3px 3px 8px 2px #aaa;
+  margin: 15px;
 }
 
 .card__hero img{
-  height: 400px;
+  width: 100%;
   padding: 20px;
   margin: 10px;
+  max-width: 450px;
 }
 
 .card__search {
@@ -104,12 +133,10 @@ button:focus {
   margin: 20px 0;
   position: relative;
   width: 100%;
-
 }
 
 .card__searchbar {
   padding: 8px;
-  height: 25px;
   font-size: 22px;
   border: solid 2px var(--main-dark);
   border-radius: 5px; 
