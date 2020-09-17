@@ -8,18 +8,27 @@ export default {
     const response = await axios.get(url)
     return response
   },
+
   async searchRecipeArea (area) {
     const url = `${URL}/filter.php?a=${area}`
     const response = await axios.get(url)
     return response
   },
+
   async searchRecipeCategory (cat) {
     const url = `${URL}/filter.php?c=${cat}`
     const response = await axios.get(url)
     return response
   },
+
   async searchRecipeIngredient (ingr) {
     const url = `${URL}/filter.php?i=${ingr}`
+    const response = await axios.get(url)
+    return response
+  },
+
+  async getRecipeDetails (id) {
+    const url = `${URL}/lookup.php?i=${id}`
     const response = await axios.get(url)
     return response
   }

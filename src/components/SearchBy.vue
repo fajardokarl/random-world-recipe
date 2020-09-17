@@ -36,7 +36,6 @@ export default {
   padding: 10px 15px;
   border: none;
   background: none;
-  margin: 20px 1px;
   transition: background 400ms;
   letter-spacing: 1px;
 }

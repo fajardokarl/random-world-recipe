@@ -11,7 +11,12 @@
             <h3 class="card__subtitle">Find a meal to Cook</h3>
           </div>
           <div class="card__searchbar-container">
-            <input class="card__searchbar" placeholder="Seach" v-model="searchString" />
+            <input 
+              class="card__searchbar"
+              placeholder="Seach"
+              v-model="searchString"
+              @keyup.enter="handleSearchRecipe"
+            />
             <button class="card__search-btn" @click="handleSearchRecipe">
               <img src="@/assets/Icon - Search - Sharp.svg">
             </button>
@@ -30,7 +35,6 @@
 
 <script>
 // @ is an alias to /src
-import api from "@/api/Api"
 
 export default {
   name: 'Home',
@@ -40,15 +44,7 @@ export default {
       recipeResult: [] 
     }
   },
-  components: {
-    // HelloWorld
-  },
   methods: {
-    // async handleSearchRecipe () {
-    //   await api.searchRecipe(this.searchString)
-    //     .then(response => this.recipeResult = response.data.meals)
-    //   console.log(this.recipeResult)
-    // },
      handleSearchRecipe () {
        this.$router.push({name: 'Search', params: { searchString: this.searchString }, query: {by: 'recipe'} })
     }
@@ -68,6 +64,7 @@ button:focus {
 
 :root {
   --accent-color: #F9A826;
+  --secondary-accent: #FEFDF8;
   --main-dark: #858585;
   --secondary-dark: #D3D3D3;
 }
