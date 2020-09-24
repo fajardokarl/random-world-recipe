@@ -31,6 +31,12 @@ export default {
     const url = `${URL}/lookup.php?i=${id}`
     const response = await axios.get(url)
     return response
+  },
+
+  async getRandom () {
+    const url = `${URL}/random.php`
+    const response = await axios.get(url)
+    return response
   }
 }
 

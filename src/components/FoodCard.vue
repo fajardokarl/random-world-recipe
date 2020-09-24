@@ -18,8 +18,14 @@ export default {
     recipeID: String
   },
   methods: {
+    ...mapActions([
+      'handleGetRandom',
+      'selectRecipe'
+    ]),
     handlesSlectRecipe () {
-      this.$router.push({name: 'Recipe', params: { recipe: this.recipeID}}).catch(()=>{})
+      this.selectRecipe(this.recipeID).then(() => {
+        this.$router.push({name: 'Recipe', params: { recipe: this.recipeID}}).catch(()=>{})
+      })
     }
   }
 }

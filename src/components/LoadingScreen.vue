@@ -1,7 +1,9 @@
 <template>
   <div id="loading-screen">
-    <img class="loading-illu" src="@/assets/loading-illustration.svg" alt="">
-    <h1>Please wait...</h1>
+    <div class="loading__container">
+      <img class="loading__illustration" src="@/assets/loading-illustration.svg" alt="">
+      <h1>Please wait...</h1>
+    </div>
   </div>
 </template>
 
@@ -12,7 +14,7 @@ export default {
 </script>
 
 <style scoped>
-#loading-screen {
+.loading__container {
   position: absolute;
   width: 100%;
   height: 100vh;
@@ -26,11 +28,11 @@ export default {
   align-items: center;
 }
 
-#loading-screen h1 {
+.loading__container h1 {
   font-size: 5rem;
 }
 
-.loading-illu {
+.loading__illustration {
   max-width: 350px;
 }
 

@@ -23,7 +23,7 @@
           </div>
           <div class="card__random_container">
             <p class="card__random-text">... or get</p>
-            <button class="card__random-btn">
+            <button class="card__random-btn" @click="getRandomRecipe">
               Random
             </button>
           </div>
@@ -34,6 +34,7 @@
 </template>
 
 <script>
+import { mapGetters, mapActions } from 'vuex'
 // @ is an alias to /src
 
 export default {
@@ -44,9 +45,22 @@ export default {
       recipeResult: [] 
     }
   },
+  computed:{
+    ...mapGetters([
+      'getRandomID'
+    ])
+  },
   methods: {
+    ...mapActions([
+      'handleGetRandom'
+    ]),
      handleSearchRecipe () {
        this.$router.push({name: 'Search', params: { searchString: this.searchString }, query: {by: 'recipe'} })
+    },
+    getRandomRecipe () {
+      this.handleGetRandom().then(() => {
+        this.$router.push({name: 'Recipe', params: { recipe: this.getRandomID}}).catch(()=>{})
+      })
     }
   }
 }
