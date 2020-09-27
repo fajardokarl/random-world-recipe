@@ -21,6 +21,7 @@
               <img src="@/assets/Icon - Search - Sharp.svg">
             </button>
           </div>
+          <p class="card__error" v-show="isEmpty">Please tell us what recipe you want to know.</p>
           <div class="card__random_container">
             <p class="card__random-text">... or get</p>
             <button class="card__random-btn" @click="getRandomRecipe">
@@ -42,7 +43,8 @@ export default {
   data() {
     return {
       searchString: '',
-      recipeResult: [] 
+      recipeResult: [],
+      isEmpty: false
     }
   },
   computed:{
@@ -55,7 +57,12 @@ export default {
       'handleGetRandom'
     ]),
      handleSearchRecipe () {
-       this.$router.push({name: 'Search', params: { searchString: this.searchString }, query: {by: 'recipe'} })
+       if (this.searchString) {
+         this.$router.push({name: 'Search', params: { searchString: this.searchString }, query: {by: 'recipe'} })
+         this.isEmpty = false
+       } else {
+         this.isEmpty = true
+       }
     },
     getRandomRecipe () {
       this.handleGetRandom().then(() => {
@@ -67,6 +74,16 @@ export default {
 </script>
 
 <style> 
+:root {
+  --accent-color: #F9A826;
+  --secondary-accent: #FEFDF8;
+  --main-dark: #858585;
+  --secondary-dark: #D3D3D3;
+}
+body {
+  margin: 0;
+}
+
 h2, h3 {
   margin-block-end: 0;
   margin-block-start: 0;
@@ -76,19 +93,11 @@ button:focus {
   outline: none !important;
 }
 
-:root {
-  --accent-color: #F9A826;
-  --secondary-accent: #FEFDF8;
-  --main-dark: #858585;
-  --secondary-dark: #D3D3D3;
-}
-
 
 .home {
   display: flex;
   justify-content: center;
   background: #FEFDF8;
-  height: 100%;
 }
 
 .card-container {
@@ -174,6 +183,12 @@ button:focus {
   cursor: pointer;
 }
 
+.card__error {
+  color: red;
+  font-size: 14px;
+  margin-top: -10px;
+}
+
 .card__random_container {
   display: flex;
   justify-content:flex-start;
@@ -201,5 +216,22 @@ button:focus {
  
   background: var(--accent-color);
   color: #fff;
+}
+
+@media (max-width: 480px) {
+  .card {
+    flex-direction: column;
+    position: absolute;
+    box-shadow: none;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    margin: 0;
+  }
+  
+  .card__search-btn {
+    height: 46px;
+  }
 }
 </style>

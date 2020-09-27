@@ -27,7 +27,6 @@ const actions = {
   searchRecipeByArea: async ({commit}, searchString) => {
     const recipes = await api.searchRecipeArea(searchString)
     commit('setRecipes', recipes.data.meals)
-    // console.log(recipes.data.meals)
   },
 
   searchRecipeByCat: async ({commit}, searchString) => {
@@ -43,7 +42,6 @@ const actions = {
   selectRecipe: async ({commit}, mealID) => {
     const recipeDetails = await api.getRecipeDetails(mealID)
     commit('setSelectedRecipe', recipeDetails.data.meals[0])
-    // console.log(recipeDetails.data.meals)
   },
 
   handleClearRecipes: ({commit}) => {

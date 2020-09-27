@@ -10,12 +10,13 @@
 
 body,html {
     margin: 0;
-    padding: 0;
     height: 100vh;
 }
-* {
-    box-sizing: border-box;
+
+*, *::before, *::after {
+  box-sizing: border-box;
 }
+
 
 #app {
   font-family: 'Roboto', sans-serif;

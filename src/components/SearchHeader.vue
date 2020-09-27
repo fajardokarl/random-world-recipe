@@ -1,7 +1,13 @@
 <template>
   <div class="header__container">
     <div class="header__interactions">
-      <img class="header__icon" src="@/assets/undraw_cooking_lyxy.svg" alt="">
+      <a class="header__back-home" href="/">
+        <img
+          class="header__icon"
+          src="@/assets/undraw_cooking_lyxy.svg"
+          alt="icon"
+        >
+      </a>
       <div class="header__input-container">
         <input
           class="header__input"
@@ -130,6 +136,9 @@ export default {
       this.handleGetRandom().then(() => {
         this.$router.push({name: 'Recipe', params: { recipe: this.getRandomID}}).catch(()=>{})
       })
+    },
+    refreshPage () {
+      this.$router.push({name: 'Search', params: { searchString: this.searchString}, query: {by: this.getActiveQuery} }).catch(()=>{})
     }
   },
 }
@@ -146,7 +155,7 @@ export default {
 }
 
 .header__interactions {
-  padding: 30px 0 40px;
+  padding-top: 30px;
   display: grid;
   grid-template-columns: 100px 3fr 2fr;
   grid-column-gap: 15px;
@@ -156,6 +165,7 @@ export default {
 .header__icon {
   max-width: 80px;
   margin-bottom: 20px;
+  cursor: pointer;
 }
 
 .header__input-container {
@@ -218,11 +228,34 @@ export default {
 .search-by {
   display: flex;
   justify-content: left;
-  position: absolute;
-  bottom: 0;
+  /* position: absolute; */
+  /* bottom: 0; */
 }
 
 .header__interactions, .search-by {
   margin: 0 30px;
 }
+
+@media (max-width: 480px) {
+  .header__interactions {
+    grid-template: 1fr 1fr / 1fr 1fr;
+    /* grid-template-columns: none; */
+  }
+  .header__back-home {
+    order: 1;
+  }
+  .header__input-container {
+    order: 3;
+    grid-column: 1 / 3;
+  }
+ .header__random-container {
+    order: 2;
+  }
+
+  .search-by {
+    justify-content: space-between;
+    overflow-y: scroll;
+  }
+}
+
 </style>

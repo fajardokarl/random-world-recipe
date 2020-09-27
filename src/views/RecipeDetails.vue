@@ -9,7 +9,7 @@
             <img :src="selectedRecipeDetails.strMealThumb" alt="">
           </div>
           <div class="recipe__ingredients">
-            <h1> {{ selectedRecipeDetails.strMeal }} </h1>
+            <!-- <h1> {{ selectedRecipeDetails.strMeal }} </h1> -->
             <h3>Ingredients</h3>
             <!-- replace with ul li -->
               <div v-for="ing in 20" :key=ing> 
@@ -75,6 +75,9 @@ export default {
         this.selectRecipe(recipeID).then(() => {
           this.loading = false
           this.imageLoad = true
+          document.body.scrollTop = 0; // For Safari
+          document.documentElement.scrollTop = 0; // For Chrome, Firefox, IE and Opera
+
         })
       }
     }
@@ -91,7 +94,8 @@ export default {
   },
   computed: {
     ...mapGetters([
-      'selectedRecipeDetails'
+      'selectedRecipeDetails',
+      'getActiveQuery'
     ]),
   },
   mounted() {

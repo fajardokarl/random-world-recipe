@@ -50,10 +50,16 @@ export default {
 
 .recipe-results {
   display:grid;
-  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  grid-template-columns: repeat(auto-fit, minmax(300px, 500px));
   grid-gap: 35px;
   padding: 0 30px;
   /* margin: 0 60px; */
+}
+
+@media (max-width: 480px) {
+  .results-container {
+    margin-top: 320px;
+  }
 }
 
 </style>

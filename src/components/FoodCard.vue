@@ -37,6 +37,7 @@ export default {
   box-shadow: none;
   max-height: calc(100% - 5px);
   transition: transform 200ms, box-shadow 250ms;
+  /* max-width: 300px; */
 }
 
 #foodcard:hover {

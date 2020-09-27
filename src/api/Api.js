@@ -4,9 +4,13 @@ const URL = "https://www.themealdb.com/api/json/v1/1"
 
 export default {
   async searchRecipeName (name) {
-    const url = `${URL}/search.php?s=${name}`
-    const response = await axios.get(url)
-    return response
+    try {
+      const url = `${URL}/search.php?s=${name}`
+      const response = await axios.get(url)
+      return response
+    } catch(err) {
+      console.error(err)
+    }
   },
 
   async searchRecipeArea (area) {
