@@ -38,4 +38,10 @@ export default {
   max-width: 350px;
 }
 
+@media (max-width: 480px) {
+  .loading__container h1 {
+    font-size: 3rem;
+  }
+}
+
 </style>

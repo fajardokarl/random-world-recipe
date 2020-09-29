@@ -9,7 +9,7 @@
             <img :src="selectedRecipeDetails.strMealThumb" alt="">
           </div>
           <div class="recipe__ingredients">
-            <!-- <h1> {{ selectedRecipeDetails.strMeal }} </h1> -->
+            <h2> {{ selectedRecipeDetails.strMeal }} </h2>
             <h3>Ingredients</h3>
             <!-- replace with ul li -->
               <div v-for="ing in 20" :key=ing> 
@@ -22,6 +22,7 @@
         <div class="recipe__right">
           <div class="recipe__instructions">
             <h1> {{ selectedRecipeDetails.strMeal }} </h1>
+            <h2>Instruction</h2>
             <p>{{ selectedRecipeDetails.strInstructions }}</p>
           </div>
           <div class="recipe__tutorial">
@@ -138,6 +139,14 @@ export default {
   line-height: 2;
 }
 
+.recipe__ingredients h2 {
+  display: none;
+}
+
+.recipe__instructions h2 {
+  margin-top: 45px;
+}
+
 .recipe__tutorial {
   display: flex;
   flex-direction: column;
@@ -145,11 +154,30 @@ export default {
   padding: 30px 0;
 }
 
+.recipe__tutorial h2 {
+  margin-bottom: 20px;
+}
+
 .recipe__tutorial iframe {
   flex-grow: 1;
   position: relative;
   height: 100%;
   width: 100%;
+}
+
+@media (max-width: 480px) {
+  .recipe__details {
+    grid-template-columns: 1fr;
+    margin: 15px;
+  }
+
+  .recipe__instructions h1 {
+    display: none;
+  }
+  
+  .recipe__ingredients h2 {
+    display: inline-block;
+  }
 }
 
 </style>
