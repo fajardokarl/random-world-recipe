@@ -54,20 +54,6 @@ export default {
     }
   },
   watch: {
-    selectedRecipeDetails: {
-      deep: true,
-      immediate: true,
-      handler(val) {
-        // const recipeID = this.$route.params.recipe
-        // if (Object.keys(val).length < 1) {
-        //   this.loading = true
-        //   this.imageLoad = true
-        //   this.selectRecipe(recipeID).then(() => {
-        //     this.loading = false
-        //   })
-        // }
-      }
-    },
     $route: {
       immediate: true,
       handler(to, from) {

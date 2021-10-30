@@ -82,8 +82,7 @@ export default {
     $route: {
       immediate: true,
       handler(to, from) {
-        // this.activeQuery = to.query.by
-        this.handleActiveQuery(to.query.by)
+        this.handleActiveQuery(to.query.by ?? 'recipe')
         this.searchString = this.$route.params.searchString
         this.oldSearchString = this.searchString
 
